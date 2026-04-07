@@ -1,0 +1,4 @@
+name: echoserver
+namespace: default
+type: kustomize
+wave: '5'
