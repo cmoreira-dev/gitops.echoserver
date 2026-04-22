@@ -1,4 +1,4 @@
 name: echoserver
-namespace: default
+namespace: echoserver
 type: kustomize
 wave: '5'
