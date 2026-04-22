@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: istio-config
+  namespace: echoserver
+spec:
+  project: homelab
+  source:
+    repoURL: https://github.com/cmoreira-dev/gitops.echoserver.git
+    targetRevision: main
+    path: kustomize/echoserver
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: echoserver
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true
+  ignoreDifferences:
+    - group: admissionregistration.k8s.io
+      kind: ValidatingWebhookConfiguration
+      jsonPointers:
+        - /webhooks/0/failurePolicy
+        - /webhooks/1/failurePolicy

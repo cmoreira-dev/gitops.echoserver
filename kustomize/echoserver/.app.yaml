@@ -1,4 +1,0 @@
-name: echoserver
-namespace: echoserver
-type: kustomize
-wave: '5'
